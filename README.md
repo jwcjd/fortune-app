@@ -1,0 +1,2 @@
+# fortune-app
+todays fortune
