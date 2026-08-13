@@ -476,9 +476,16 @@ function sel(i){
       <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
       <button class="share-btn link" onclick="navigator.clipboard.writeText(location.href).then(()=>alert('링크 복사됨!'))">🔗 링크 복사</button>
     </div>
-    <div class="ad-space"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6692623657038108" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+    <div class="ad-space" id="adSlot"></div>
   `;
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+
+  // 광고 슬롯 삽입
+  var adEl = document.getElementById('adSlot');
+  if(adEl) {
+    adEl.innerHTML = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6692623657038108" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>';
+    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+  }
 }
 </script>
 
