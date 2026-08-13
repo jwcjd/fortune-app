@@ -14,6 +14,10 @@
 <link rel="canonical" href="">
 
 <!-- Kakao SDK -->
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6692623657038108" crossorigin="anonymous"></script>
+
+<!-- Kakao SDK -->
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
 
 <!-- Favicon -->
@@ -305,7 +309,7 @@ const DONT_ITEMS=['충동 구매','야근','SNS 과몰입','술자리','큰 결�
 
 function sr(s){let x=Math.sin(s)*10000;return x-Math.floor(x);}
 function pk(a,s){return a[Math.floor(sr(s)*a.length)];}
-function sc(s){return Math.floor(sr(s)*38+58);}
+function sc(s){return Math.floor(sr(s)*18+80);}
 function getCustom(signKey, field, seed) {
   const day = String(today.getDate());
   const dayPad = day.padStart(2,'0');
@@ -317,8 +321,9 @@ function getCustom(signKey, field, seed) {
   return '운세 데이터를 확인 중...';
 }
 function getOL(score,seed){
-  if(score>=90)return pk(OL_90,seed);if(score>=80)return pk(OL_80,seed);
-  if(score>=70)return pk(OL_70,seed);if(score>=60)return pk(OL_60,seed);return pk(OL_LOW,seed);
+  if(score>=95)return pk(OL_90,seed);
+  if(score>=88)return pk(OL_80,seed);
+  return pk(OL_70,seed);
 }
 
 // Date
@@ -471,7 +476,7 @@ function sel(i){
       <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
       <button class="share-btn link" onclick="navigator.clipboard.writeText(location.href).then(()=>alert('링크 복사됨!'))">🔗 링크 복사</button>
     </div>
-    <div class="ad-space">광고 영역 (AdSense)</div>
+    <div class="ad-space"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6692623657038108" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   `;
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
 }
