@@ -10,8 +10,57 @@
 <meta property="og:title" content="오늘의 운세 — 별자리 운세">
 <meta property="og:description" content="별들이 전하는 솔직한 오늘의 운세. 매일 새로운 별자리 운세를 확인하세요.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://todays-fortune-app.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://todays-fortune-app.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="오늘의 운세 — 별자리 운세">
+<meta name="twitter:description" content="별들이 전하는 솔직한 오늘의 운세. 매일 새로운 별자리 운세를 확인하세요.">
+<meta name="twitter:image" content="https://todays-fortune-app.vercel.app/og-image.png">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="">
+<meta name="google-site-verification" content="1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4">
+<meta name="author" content="오늘의 운세">
+<meta name="theme-color" content="#1a1a2e">
+<link rel="canonical" href="https://todays-fortune-app.vercel.app/">
+
+<!-- JSON-LD: WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "오늘의 운세",
+  "url": "https://todays-fortune-app.vercel.app",
+  "description": "매일 업데이트되는 12별자리 운세. 별자리별 맞춤 독설 유머 운세.",
+  "inLanguage": "ko"
+}
+</script>
+
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "오늘의 별자리 운세는 어떻게 확인하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "사이트에서 본인 별자리를 선택하면 총운, 연애운, 직장운, 재물운을 확인할 수 있습니다. 매일 운세가 업데이트됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "별자리 운세는 매일 바뀌나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 12별자리 모두 매일 새로운 운세가 제공됩니다. 별자리 성격(원소, 수호성)에 기반한 맞춤 운세입니다."
+      }
+    }
+  ]
+}
+</script>
 
 <!-- Kakao SDK -->
 <!-- Google AdSense -->
@@ -402,17 +451,22 @@ try { Kakao.init('4dc7d7690ca8b78aec06f64ca1158905'); } catch(e) { console.log('
 
 function shareKakao() {
   if (!currentSign) { alert('별자리를 먼저 선택하세요!'); return; }
+  var z = currentSign;
+  var y=today.getFullYear(),m=today.getMonth()+1,d=today.getDate();
+  var b=y*100000+m*1000+d*13+Z.indexOf(z)*7;
+  var f={o:sc(b),l:sc(b+1),m:sc(b+2),w:sc(b+3),h:sc(b+4)};
+  var desc = `💕연애 ${f.l} 💰재물 ${f.m} 💼직장 ${f.w} ❤️건강 ${f.h}\n\n${currentSummary}\n\n"${getOL(f.o,b+45)}"`;
   Kakao.Share.sendDefault({
     objectType: 'feed',
     content: {
-      title: `${currentSign.e} ${currentSign.n} 오늘의 운세: ${currentScore}점`,
-      description: currentSummary,
-      imageUrl: '',
+      title: `${z.e} ${z.n} 오늘의 운세: ${currentScore}점`,
+      description: desc,
+      imageUrl: 'https://todays-fortune-app.vercel.app/og-image.png',
       link: { mobileWebUrl: window.location.href, webUrl: window.location.href },
     },
     social: { likeCount: currentScore },
     buttons: [
-      { title: '내 운세 보기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } },
+      { title: '내 별자리 운세 보기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } },
     ],
   });
 }
@@ -474,20 +528,6 @@ function sel(i){
       <div class="bottom-card dont">
         <div class="bc-header"><span class="bc-emoji">🚫</span><span class="bc-title">오늘 피할 일</span></div>
         <ul class="bc-list">${tips.dontList.map(t=>`<li>❌ ${t}</li>`).join('')}</ul>
-      </div>
-    </div>
-
-    <div class="ranking-section">
-      <div class="ranking-title">🏆 오늘의 별자리 랭킹</div>
-      <div class="ranking-list">
-        ${ranking.map(r=>{
-          let cls='';
-          if(r.rank===1) cls='gold';
-          else if(r.rank===2) cls='silver';
-          else if(r.rank===3) cls='bronze';
-          if(r.isMe) cls+=' me';
-          return `<div class="rank-chip ${cls}" onclick="sel(${r.index})"><span class="rank-num">${r.rank}</span>${r.emoji} ${r.name} <span style="color:#aaa;font-weight:400">${r.score}</span></div>`;
-        }).join('')}
       </div>
     </div>
 
