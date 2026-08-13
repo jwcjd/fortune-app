@@ -13,6 +13,9 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="">
 
+<!-- Kakao SDK -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" integrity="sha384-DKYJZ8NLiK8MN4/C5P2dtSmLQ4KwPaoqAfyA/DfmEc1VDxu4yyC7wy6K1Hs90nk" crossorigin="anonymous"></script>
+
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
 
@@ -367,12 +370,38 @@ document.getElementById('grid').innerHTML=Z.map((z,i)=>`
     <span class="emoji">${z.e}</span><span class="name">${z.n}</span><span class="period">${z.p}</span>
   </button>`).join('');
 
+// 카카오 SDK 초기화
+Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');
+
+// 현재 선택된 별자리 정보 저장
+let currentSign = null;
+let currentScore = null;
+let currentSummary = null;
+
+function shareKakao() {
+  if (!currentSign) { alert('별자리를 먼저 선택하세요!'); return; }
+  Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: `${currentSign.e} ${currentSign.n} 오늘의 운세: ${currentScore}점`,
+      description: currentSummary,
+      imageUrl: '',
+      link: { mobileWebUrl: window.location.href, webUrl: window.location.href },
+    },
+    social: { likeCount: currentScore },
+    buttons: [
+      { title: '내 운세 보기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } },
+    ],
+  });
+}
+
 function sel(i){
   document.querySelectorAll('.zodiac-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
   const z=Z[i],y=today.getFullYear(),m=today.getMonth()+1,d=today.getDate();
   const b=y*100000+m*1000+d*13+i*7;
   const f={o:sc(b),l:sc(b+1),m:sc(b+2),w:sc(b+3),h:sc(b+4)};
-  const yo=getYesterdayScore(i); // 어제 총운 점수
+  const yo=getYesterdayScore(i);
+  currentSign=z; currentScore=f.o; currentSummary=getCustom(z.k,'summary',b);
   const bestZ=Z[(i+Math.floor(sr(b+90)*11)+1)%12];
   const avoidZ=Z[(i+Math.floor(sr(b+80)*11)+1)%12];
   const ranking=getRanking(i);
@@ -441,7 +470,7 @@ function sel(i){
     </div>
 
     <div class="share-row">
-      <button class="share-btn kakao" onclick="alert('카카오톡 공유: 배포 후 연동')">💬 카카오톡 공유</button>
+      <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
       <button class="share-btn link" onclick="navigator.clipboard.writeText(location.href).then(()=>alert('링크 복사됨!'))">🔗 링크 복사</button>
     </div>
     <div class="ad-space">광고 영역 (AdSense)</div>
