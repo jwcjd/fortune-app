@@ -261,6 +261,7 @@
 
 <div class="footer">
   <p>재미로 보는 운세 · 매일 업데이트 · 진지하게 받아들이지 마세요 😉</p>
+  <p style="margin-top:8px;font-size:10px;color:#bbb;">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 </div>
 
 <script>
@@ -441,7 +442,7 @@ function sel(i){
       <div class="keyword-title">🔮 오늘의 키워드</div>
       <div class="keyword-grid">
         <div class="keyword-item"><div class="ki-emoji">🎨</div><div class="ki-label">행운의 색</div><div class="ki-value">${pk(COLORS,b+50)}</div></div>
-        <div class="keyword-item"><div class="ki-emoji">🍽️</div><div class="ki-label">행운의 음식</div><div class="ki-value">${pk(FOODS,b+70)}</div><a href="https://www.coupang.com/np/search?component=&q=${encodeURIComponent(pk(FOODS,b+70))}&channel=user&sourceType=srp&categoryId=0&listId=0&vendorId=0&offerCondition=0&rating=0&sorter=scoreDesc&listSize=36&filterType=&isPriceRange=false&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=false&channel=affiliate&src=1032001&spec=10305555&addtag=400&ctag=fortune&atag=AF7330023" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;padding:4px 10px;background:#e52528;color:#fff;border-radius:8px;font-size:11px;font-weight:600;text-decoration:none;">🛒 쿠팡에서 주문</a></div>
+        <div class="keyword-item"><div class="ki-emoji">🍽️</div><div class="ki-label">행운의 음식</div><div class="ki-value">${pk(FOODS,b+70)}</div></div>
         <div class="keyword-item"><div class="ki-emoji">👍</div><div class="ki-label">잘 맞는 별자리</div><div class="ki-value">${bestZ.e} ${bestZ.n}</div></div>
         <div class="keyword-item"><div class="ki-emoji">⚠️</div><div class="ki-label">피할 별자리</div><div class="ki-value">${avoidZ.e} ${avoidZ.n}</div></div>
       </div>
@@ -476,6 +477,7 @@ function sel(i){
       <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
       <button class="share-btn link" onclick="navigator.clipboard.writeText(location.href).then(()=>alert('링크 복사됨!'))">🔗 링크 복사</button>
     </div>
+    <div class="ad-space" id="coupangBanner"></div>
     <div class="ad-space" id="adSlot"></div>
   `;
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
@@ -496,5 +498,17 @@ function sel(i){
     <a href="privacy.html" style="color:#888;text-decoration:none;margin:0 12px;">개인정보처리방침</a>
   </p>
 </footer>
+
+<!-- 쿠팡 파트너스 배너 -->
+<script src="https://ads-partners.coupang.com/g.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var banner = document.getElementById('coupangBanner');
+  if(banner) {
+    new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"680","height":"140","tsource":"","container":"coupangBanner"});
+  }
+});
+</script>
+
 </body>
 </html>
