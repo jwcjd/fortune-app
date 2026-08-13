@@ -303,13 +303,6 @@ const Z=[
 
 // 별자리별 맞춤 운세 데이터 — 월별 JSON 파일에서 로드
 var CUSTOM_FORTUNE = null;
-(function loadFortune() {
-  var m = String(today.getMonth() + 1).padStart(2, '0');
-  fetch('data/fortune-' + m + '.json')
-    .then(function(r) { return r.json(); })
-    .then(function(d) { CUSTOM_FORTUNE = d; console.log('✅ ' + m + '월 운세 로드 완료'); })
-    .catch(function() { console.log('⚠️ ' + m + '월 운세 파일 없음, 기본 모드'); });
-})();
 
 const OL_90=["오늘 로또 사세요. 진지합니다.","별들이 올해 최고의 날이라고 난리.","이 점수 실화? 뭘 해도 됩니다.","우주가 당신 편입니다.","오늘의 주인공은 당신.","100점 만점에 거의 치트키.","이런 날은 1년에 3번. 낭비하지 마세요.","오늘은 셀카도 잘 나옵니다. 프사 바꾸세요.","별들이 박수치고 있습니다.","다른 별자리들이 부러워하고 있습니다."];
 const OL_80=["꽤 괜찮은 하루! 무리만 안 하면 OK.","컨디션 좋을 거예요. 과신은 금물.","80점대면 상위권. 자신감 가지세요.","하는 일의 70%는 잘 풀립니다.","점심에 비싼 거 먹어도 되는 날.","자판기에서 음료 2개 나올 운세.","별들의 평가: '쓸만한 하루'.","당신의 오라가 빛나고 있습니다.","좋은 소식: 운 좋음. 나쁜 소식: 내일은 모름.","별들이 고개 끄덕이고 있습니다."];
@@ -345,6 +338,15 @@ function getOL(score,seed){
 
 // Date
 const today=new Date();
+
+// 월별 운세 데이터 로드
+(function() {
+  var m = String(today.getMonth() + 1).padStart(2, '0');
+  fetch('data/fortune-' + m + '.json')
+    .then(function(r) { return r.json(); })
+    .then(function(d) { CUSTOM_FORTUNE = d; console.log('✅ ' + m + '월 운세 로드 완료'); })
+    .catch(function() { console.log('⚠️ ' + m + '월 운세 파일 없음'); });
+})();
 const days=['일','월','화','수','목','금','토'];
 const months=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 document.getElementById('dayNum').textContent=today.getDate();
