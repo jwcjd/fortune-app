@@ -451,22 +451,17 @@ try { Kakao.init('4dc7d7690ca8b78aec06f64ca1158905'); } catch(e) { console.log('
 
 function shareKakao() {
   if (!currentSign) { alert('별자리를 먼저 선택하세요!'); return; }
-  var z = currentSign;
-  var y=today.getFullYear(),m=today.getMonth()+1,d=today.getDate();
-  var b=y*100000+m*1000+d*13+Z.indexOf(z)*7;
-  var f={o:sc(b),l:sc(b+1),m:sc(b+2),w:sc(b+3),h:sc(b+4)};
-  var desc = `💕연애 ${f.l} 💰재물 ${f.m} 💼직장 ${f.w} ❤️건강 ${f.h}\n\n${currentSummary}\n\n"${getOL(f.o,b+45)}"`;
   Kakao.Share.sendDefault({
     objectType: 'feed',
     content: {
-      title: `${z.e} ${z.n} 오늘의 운세: ${currentScore}점`,
-      description: desc,
+      title: `${currentSign.e} ${currentSign.n} 오늘의 운세: ${currentScore}점`,
+      description: currentSummary,
       imageUrl: 'https://todays-fortune-app.vercel.app/og-image.png',
       link: { mobileWebUrl: window.location.href, webUrl: window.location.href },
     },
     social: { likeCount: currentScore },
     buttons: [
-      { title: '내 별자리 운세 보기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } },
+      { title: '내 운세 보기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } },
     ],
   });
 }
