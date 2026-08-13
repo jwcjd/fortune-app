@@ -109,11 +109,11 @@
   }
   .hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
   .hero-left{display:flex;align-items:center;gap:12px;}
-  .hero-emoji{font-size:40px;line-height:1;}
-  .hero-name{font-size:24px;font-weight:800;}
-  .hero-score{font-family:'Outfit',sans-serif;font-size:48px;font-weight:900;line-height:1;}
-  .hero-meta{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:6px;}
-  .hero-trait{font-size:13px;color:rgba(255,255,255,0.6);font-weight:400;line-height:1.5;margin-bottom:20px;}
+  .hero-emoji{font-size:48px;line-height:1;}
+  .hero-name{font-size:28px;font-weight:800;letter-spacing:-0.5px;}
+  .hero-score{font-family:'Outfit',sans-serif;font-size:56px;font-weight:900;line-height:1;}
+  .hero-meta{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:8px;margin-top:4px;}
+  .hero-trait{font-size:14px;color:rgba(255,255,255,0.6);font-weight:400;line-height:1.6;margin-bottom:24px;}
   .hero-trait strong{color:rgba(255,255,255,0.85);font-weight:600;}
 
   /* Score Grid inside hero */
@@ -126,9 +126,9 @@
   .fill.love{background:#ff4d6d} .fill.money{background:#ffb703} .fill.work{background:#06d6a0} .fill.health{background:#4cc9f0}
 
   /* Summary section inside hero */
-  .hero-summary-label{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1.5px;font-weight:700;margin-bottom:8px;}
-  .hero-summary-text{font-size:15px;line-height:1.8;color:rgba(255,255,255,0.8);font-weight:400;}
-  .hero-quote{font-size:13px;color:rgba(255,255,255,0.45);margin-top:16px;font-style:italic;line-height:1.5;}
+  .hero-summary-label{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:1.5px;font-weight:700;margin-bottom:10px;}
+  .hero-summary-text{font-size:16px;line-height:1.9;color:rgba(255,255,255,0.88);font-weight:400;}
+  .hero-quote{font-size:14px;color:rgba(255,255,255,0.5);margin-top:20px;font-style:italic;line-height:1.6;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);}
 
   /* Bento Grid */
   .bento{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-bottom:12px;}
@@ -159,13 +159,13 @@
     border:1px solid #eee;margin-bottom:12px;
     animation:cardIn 0.4s ease both;animation-delay:0.2s;
   }
-  .keyword-title{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:16px;}
+  .keyword-title{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:20px;}
   .keyword-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   @media(max-width:768px){.keyword-grid{grid-template-columns:repeat(2,1fr);}}
   .keyword-item{text-align:center;}
-  .keyword-item .ki-emoji{font-size:28px;margin-bottom:6px;}
-  .keyword-item .ki-label{font-size:10px;color:#aaa;font-weight:500;letter-spacing:0.5px;}
-  .keyword-item .ki-value{font-size:15px;font-weight:700;color:#1a1a1a;margin-top:3px;}
+  .keyword-item .ki-emoji{font-size:32px;margin-bottom:8px;}
+  .keyword-item .ki-label{font-size:11px;color:#999;font-weight:500;letter-spacing:0.5px;}
+  .keyword-item .ki-value{font-size:16px;font-weight:700;color:#1a1a1a;margin-top:4px;}
 
   /* 궁합 + 팁 통합 그리드 */
   .bottom-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-bottom:12px;}
@@ -184,27 +184,27 @@
   .bottom-card.dont{background:#fef2f2;border-color:#fecdd3;}
   .bottom-card.dont .bc-title{color:#dc2626;}
   .bottom-card .bc-list{list-style:none;padding:0;margin:0;}
-  .bottom-card .bc-list li{font-size:14px;color:#444;padding:4px 0;font-weight:500;display:flex;align-items:center;gap:6px;}
+  .bottom-card .bc-list li{font-size:15px;color:#444;padding:6px 0;font-weight:500;display:flex;align-items:center;gap:6px;}
   .bottom-card.good{background:#f0fdf4;border-color:#d1fae5;}
   .bottom-card.bad{background:#fef2f2;border-color:#fecdd3;}
 
   /* Share */
   .share-row{display:flex;gap:8px;padding-bottom:24px;}
   .share-btn{
-    flex:1;padding:14px;border:none;border-radius:12px;font-size:14px;font-weight:600;
+    flex:1;padding:16px;border:none;border-radius:14px;font-size:15px;font-weight:600;
     cursor:pointer;transition:all 0.2s;font-family:inherit;
   }
-  .share-btn:hover{transform:translateY(-2px);}
+  .share-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
   .share-btn.kakao{background:#fee500;color:#1a1a1a;}
-  .share-btn.link{background:#f0f0f0;color:#555;}
+  .share-btn.link{background:#eee;color:#444;}
 
   /* 오늘의 랭킹 */
   .ranking-section{padding:24px 0 12px;}
   .ranking-title{font-size:15px;font-weight:700;margin-bottom:12px;color:#1a1a1a;}
   .ranking-list{display:flex;flex-wrap:wrap;gap:6px;}
   .rank-chip{
-    display:inline-flex;align-items:center;gap:4px;
-    padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;
+    display:inline-flex;align-items:center;gap:5px;
+    padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
     background:#fff;border:1px solid #eee;color:#666;cursor:pointer;transition:all 0.2s;
   }
   .rank-chip:hover{border-color:#ddd;background:#f8f8f8;}
@@ -226,8 +226,9 @@
 
   /* tips는 bottom-grid로 통합됨 */
 
-  /* Ad */
-  .ad-space{background:#fafafa;border:1px dashed #ddd;border-radius:12px;padding:24px;text-align:center;color:#ccc;font-size:12px;margin-bottom:32px;}
+  /* Ad — 광고 로드되면 보이고 안 되면 숨김 */
+  .ad-space{border-radius:12px;margin-bottom:32px;min-height:0;}
+  .ad-space:empty{display:none;}
 
   /* Footer */
   .footer{text-align:center;padding:32px 24px 48px;font-size:11px;color:#ccc;border-top:1px solid #eee;background:#fff;}
@@ -256,7 +257,15 @@
   <div class="zodiac-section">
     <div class="zodiac-grid" id="grid"></div>
   </div>
+
+  <!-- 쿠팡 배너: 결과 하단으로 이동 -->
+
   <div id="result"></div>
+</div>
+
+<div style="max-width:920px;margin:0 auto;padding:0 20px 24px;overflow:hidden;border-radius:16px;">
+  <script src="https://ads-partners.coupang.com/g.js"></script>
+  <script>new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"100%","height":"140","tsource":""});</script>
 </div>
 
 <div class="footer">
@@ -477,17 +486,16 @@ function sel(i){
       <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
       <button class="share-btn link" onclick="navigator.clipboard.writeText(location.href).then(()=>alert('링크 복사됨!'))">🔗 링크 복사</button>
     </div>
-    <div class="ad-space" id="coupangBanner"></div>
     <div class="ad-space" id="adSlot"></div>
   `;
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
 
-  // 광고 슬롯 삽입
+  // 광고: 애드센스 로드됐을 때만 표시
   var adEl = document.getElementById('adSlot');
-  if(adEl) {
+  if(adEl && window.adsbygoogle) {
     adEl.innerHTML = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6692623657038108" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>';
-    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
-  }
+    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) { adEl.remove(); }
+  } else if(adEl) { adEl.remove(); }
 }
 </script>
 
@@ -499,16 +507,7 @@ function sel(i){
   </p>
 </footer>
 
-<!-- 쿠팡 파트너스 배너 -->
-<script src="https://ads-partners.coupang.com/g.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var banner = document.getElementById('coupangBanner');
-  if(banner) {
-    new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"680","height":"140","tsource":"","container":"coupangBanner"});
-  }
-});
-</script>
+<!-- 쿠팡 파트너스: 상단에 인라인으로 삽입됨 -->
 
 </body>
 </html>
