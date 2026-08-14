@@ -363,8 +363,70 @@ const COLORS=['빨강','파랑','초록','노랑','보라','주황','분홍','�
 const FOODS=['치킨','삼겹살','피자','초밥','떡볶이','라멘','햄버거','파스타','김치찌개','제육볶음','칼국수','냉면','족발','닭갈비','짜장면','비빔밥','돈까스','마라탕','감자탕','부대찌개','붕어빵','카페라떼','와플','케이크','타코','곱창','쌀국수','순대국','브런치','아이스크림'];
 
 // 오늘 하면 좋은 일 / 피할 일 풀
-const DO_ITEMS=['새로운 시작','운동하기','감사 표현하기','독서 30분','일찍 자기','물 많이 마시기','산책하기','정리정돈','먼저 연락하기','계획 세우기','명상 5분','사진 찍기','칭찬하기','요리 도전','일기 쓰기','스트레칭','음악 듣기','환기하기','웃기','디지털 디톡스'];
-const DONT_ITEMS=['충동 구매','야근','SNS 과몰입','술자리','큰 결정','다투기','늦잠','과식','뒷담화','무리한 약속','대출','전 연인 연락','과음','새벽 배달','자기 비하','비교하기','카드 긁기','무계획 쇼핑','감정적 답장','밀린 넷플릭스'];
+const DO_ITEMS=[
+  '점심 좀 비싼 거 먹기 (오늘은 됨)',
+  '퇴근하고 치킨 시키기 (별의 허락)',
+  '하고 싶은 말 참기 (내일도 출근해야 함)',
+  '읽씹 당해도 쿨하게 넘기기',
+  '장바구니 비우기 (결제 말고)',
+  '카페 가서 멍 때리기',
+  '맛있는 거 사진 찍기 (먹는 건 그다음)',
+  '오늘만 야근 안 하기',
+  '좋아하는 유튜버 영상 몰아보기',
+  '배달앱 대신 직접 가서 사 먹기',
+  '내일의 나한테 일 미루기 (합법)',
+  '퇴근 후 아무 생각 없이 걷기',
+  '안 읽은 알림 999개 무시하기',
+  '오늘은 나한테 좀 잘해주기',
+  '넷플릭스 새로 뜬 거 1편만 보기',
+  '아무한테나 이모티콘 보내기',
+  '오랜만에 노래방 가기 (혼자도 OK)',
+  '오늘 하루 불평 제로 도전',
+  '사고 싶었던 거 하나만 사기 (하나만)',
+  '좋아하는 사람한테 먼저 연락하기',
+  '30분만 일찍 자기 (이것도 성공임)',
+  '오늘은 엘리베이터 대신 계단 (1층만)',
+  '폰 배경화면 바꾸기 (기분 전환)',
+  '안 쓰는 구독 하나 해지하기 (돈 아낌)',
+  '오늘은 카페인 2잔까지만 (3잔째는 내일)',
+  '퇴근길에 편의점 디저트 하나',
+  '좋아하는 노래 풀볼륨으로 듣기',
+  '집에서 아무것도 안 해도 되는 시간 1시간',
+  '인스타 안 올리고 그냥 즐기기',
+  '오늘만 다이어트 무시하기',
+];
+const DONT_ITEMS=[
+  '쿠팡 앱 열기 (열면 30만원 나감)',
+  '전 여친/남친 인스타 보기',
+  '새벽 2시에 배달 시키기',
+  '"나 한 잔만" 하기 (이미 3잔째임)',
+  '월급 들어온 날 쇼핑하기',
+  '카톡에서 "ㅋ" 하나로 답하기',
+  '피곤한데 "괜찮아~" 하기',
+  '자기 전에 업무 메일 확인하기',
+  '남의 여행 사진 보고 현타 오기',
+  '빈속에 커피 마시기',
+  '새벽에 중고나라 보기',
+  '술자리에서 전화번호 따기',
+  '월요일에 큰 결정 하기',
+  '화난 상태로 카톡 보내기',
+  '아무 생각 없이 유튜브 쇼츠 보기 (2시간 증발)',
+  '연봉 검색하고 자괴감 느끼기',
+  '"다이어트는 내일부터" 하기',
+  '잠 안 온다고 폰 보기 (더 안 옴)',
+  '배고플 때 편의점 가기 (3만원 나옴)',
+  '금요일 밤에 월요일 걱정하기',
+  '택배 왔는데 또 택배 주문하기',
+  '"이거 마지막" 하고 넷플릭스 한 편 더 보기',
+  '남이 산 거 보고 나도 사기',
+  '술 마시고 쇼핑하기',
+  '새벽에 과거 흑역사 떠올리기',
+  '동기 승진 소식에 자괴감 느끼기',
+  '인스타 스토리 올리고 반응 체크하기',
+  '"읽씹 왜 했지?" 집착하기',
+  '핑계 대고 약속 취소하기',
+  '피곤한데 "할 수 있어!" 무리하기',
+];
 
 function sr(s){let x=Math.sin(s)*10000;return x-Math.floor(x);}
 function pk(a,s){return a[Math.floor(sr(s)*a.length)];}
@@ -430,9 +492,13 @@ function getRanking(selectedIndex) {
 // 오늘 하면 좋은 일 / 피할 일
 function getTips(seed) {
   const doList=[], dontList=[];
+  const doUsed=new Set(), dontUsed=new Set();
   for(let i=0;i<3;i++){
-    doList.push(DO_ITEMS[Math.floor(sr(seed+100+i)*DO_ITEMS.length)]);
-    dontList.push(DONT_ITEMS[Math.floor(sr(seed+200+i)*DONT_ITEMS.length)]);
+    let idx;
+    do { idx=Math.floor(sr(seed+100+i*7)*DO_ITEMS.length); } while(doUsed.has(idx));
+    doUsed.add(idx); doList.push(DO_ITEMS[idx]);
+    do { idx=Math.floor(sr(seed+200+i*7)*DONT_ITEMS.length); } while(dontUsed.has(idx));
+    dontUsed.add(idx); dontList.push(DONT_ITEMS[idx]);
   }
   return {doList, dontList};
 }
@@ -515,16 +581,6 @@ function sel(i){
       </div>
     </div>
 
-    <div class="bottom-grid">
-      <div class="bottom-card do">
-        <div class="bc-header"><span class="bc-emoji">✨</span><span class="bc-title">오늘 하면 좋은 일</span></div>
-        <ul class="bc-list">${tips.doList.map(t=>`<li>✅ ${t}</li>`).join('')}</ul>
-      </div>
-      <div class="bottom-card dont">
-        <div class="bc-header"><span class="bc-emoji">🚫</span><span class="bc-title">오늘 피할 일</span></div>
-        <ul class="bc-list">${tips.dontList.map(t=>`<li>❌ ${t}</li>`).join('')}</ul>
-      </div>
-    </div>
 
     <div class="share-row">
       <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
